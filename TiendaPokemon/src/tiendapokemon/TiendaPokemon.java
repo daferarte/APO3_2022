@@ -16,6 +16,7 @@ public class TiendaPokemon {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        new MenuPrincipal.MenuPrincipal().setVisible(true);
     }
     
 }
