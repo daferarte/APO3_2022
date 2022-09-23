@@ -5,17 +5,26 @@
  */
 package Pokemones;
 
+import MenuPrincipal.MenuPrincipal;
+
 /**
  *
  * @author dafer
  */
 public class AgregarPokemon extends javax.swing.JFrame {
 
+    private static AgregarPokemon agregarpokemon;
     /**
      * Creates new form AgregarPokemon
      */
-    public AgregarPokemon() {
+    private AgregarPokemon() {
         initComponents();
+    }
+    
+    public static AgregarPokemon getInstance(){
+        if(agregarpokemon == null)
+            agregarpokemon=new AgregarPokemon();
+        return agregarpokemon;
     }
 
     /**
@@ -164,6 +173,11 @@ public class AgregarPokemon extends javax.swing.JFrame {
         jPanel7.add(jButton1);
 
         jButton2.setText("Regresar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel7.add(jButton2);
 
         getContentPane().add(jPanel7, java.awt.BorderLayout.PAGE_END);
@@ -197,48 +211,19 @@ public class AgregarPokemon extends javax.swing.JFrame {
     }//GEN-LAST:event_sliEstStateChanged
 
     private void spiEstStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spiEstStateChanged
-        // TODO add your handling code here:
-        
+        // TODO add your handling code here:  
         sliEst.setValue((int) Float.parseFloat(spiEst.getValue()+""));
-        
-        
-        
+       
     }//GEN-LAST:event_spiEstStateChanged
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AgregarPokemon.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AgregarPokemon.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AgregarPokemon.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AgregarPokemon.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        MenuPrincipal menuprincipal = MenuPrincipal.getInstance();
+        menuprincipal.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AgregarPokemon().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TexFieCodPok;

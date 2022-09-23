@@ -5,19 +5,27 @@
  */
 package MenuPrincipal;
 
+import Pokemones.AgregarPokemon;
+
 /**
  *
  * @author dafer
  */
 public class MenuPrincipal extends javax.swing.JFrame {
 
+    private static MenuPrincipal menuPrincipal;
     /**
      * Creates new form MenuPrincipal
      */
-    public MenuPrincipal() {
+    private MenuPrincipal() {
         initComponents();
     }
 
+    public static MenuPrincipal getInstance(){
+        if(menuPrincipal==null)
+            menuPrincipal=new MenuPrincipal();
+        return menuPrincipal;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,9 +48,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenu1.setText("Archivo");
 
-        jMenu3.setText("Agregar pokemon");
+        jMenu3.setText("Pokemones");
 
-        jMenuItem1.setText("jMenuItem1");
+        jMenuItem1.setText("Agregar Pokemon");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem1);
 
         jMenu1.add(jMenu3);
@@ -89,6 +102,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+       AgregarPokemon interfaz = AgregarPokemon.getInstance();
+       interfaz.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     
 
