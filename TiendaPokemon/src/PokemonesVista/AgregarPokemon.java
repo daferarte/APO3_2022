@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Pokemones;
+package PokemonesVista;
 
+import DAOpokemones.DAOpokemones;
 import MenuPrincipal.MenuPrincipal;
+import pokemones.PokemonesController;
 
 /**
  *
@@ -170,6 +172,11 @@ public class AgregarPokemon extends javax.swing.JFrame {
         jPanel7.setLayout(new java.awt.GridLayout(1, 0));
 
         jButton1.setText("Guardar pokemon");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel7.add(jButton1);
 
         jButton2.setText("Regresar");
@@ -222,6 +229,12 @@ public class AgregarPokemon extends javax.swing.JFrame {
         menuprincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        DAOpokemones pokCont = PokemonesController.getInstance();
+        pokCont.GuardarPokemon(TexFieNomPok.getText());
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     
 

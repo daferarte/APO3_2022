@@ -5,7 +5,7 @@
  */
 package MenuPrincipal;
 
-import Pokemones.AgregarPokemon;
+import PokemonesVista.AgregarPokemon;
 
 /**
  *
