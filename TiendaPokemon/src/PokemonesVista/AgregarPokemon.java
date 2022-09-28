@@ -59,6 +59,7 @@ public class AgregarPokemon extends javax.swing.JFrame {
         spiEst = new javax.swing.JSpinner();
         jPanel7 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -179,6 +180,14 @@ public class AgregarPokemon extends javax.swing.JFrame {
         });
         jPanel7.add(jButton1);
 
+        jButton3.setText("Mostrarpokemon");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jButton3);
+
         jButton2.setText("Regresar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -236,6 +245,12 @@ public class AgregarPokemon extends javax.swing.JFrame {
         pokCont.GuardarPokemon(TexFieNomPok.getText());
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        DAOpokemones pokCont = PokemonesController.getInstance();
+        pokCont.MostrarPokemones();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -243,6 +258,7 @@ public class AgregarPokemon extends javax.swing.JFrame {
     private javax.swing.JTextField TexFieNomPok;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
