@@ -6,6 +6,7 @@
 package pokemones;
 
 import DAOpokemones.DAOpokemones;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -24,12 +25,13 @@ public class PokemonesController implements DAOpokemones{
     }
     
     private PokemonesController(){
-        this.pokemones=new String[5][100];
+        this.pokemones=new String[6][100];
         this.cPokemon=0;
     }
     
     @Override
-    public void GuardarPokemon(String cpokemon,String npokemon, String tpokemon, String spokemon, String vpokemon, String epokemon){
+    public boolean GuardarPokemon(String cpokemon,String npokemon, String tpokemon, String spokemon, String vpokemon, String epokemon){
+        
         pokemones[0][cPokemon]=cpokemon;
         pokemones[1][cPokemon]=npokemon;
         pokemones[2][cPokemon]=tpokemon;
@@ -37,13 +39,47 @@ public class PokemonesController implements DAOpokemones{
         pokemones[4][cPokemon]=vpokemon;
         pokemones[5][cPokemon]=epokemon;
         cPokemon++;
+        
+        return true;
+    }
+    
+    @Override
+    public boolean GuardarPokemon(String[] pokemon) {
+        pokemones[0][cPokemon]=pokemon[0];
+        pokemones[1][cPokemon]=pokemon[1];
+        pokemones[2][cPokemon]=pokemon[2];
+        pokemones[3][cPokemon]=pokemon[3];
+        pokemones[4][cPokemon]=pokemon[4];
+        pokemones[5][cPokemon]=pokemon[5];
+        cPokemon++;
+        
+        return true;
     }
 
     @Override
-    public void MostrarPokemones() {
-        for(int i=0;i<cPokemon;i++){
-            System.out.println("pokemon "+(i+1)+": "+pokemones[i]);
+    public DefaultTableModel MostrarPokemones() {
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        //creo los encabezados de la tabla
+        modelo.addColumn("codigo");
+        modelo.addColumn("pokemon");
+        modelo.addColumn("Tipo");
+        modelo.addColumn("Sexo");
+        modelo.addColumn("Variocolor");
+        modelo.addColumn("Estadisticas");
+        
+        //agregando filas al modelo
+        
+        for(int i=0;i<100;i++){
+            String[] pokemon=new String[6];
+            for(int j=0;j<6;j++){
+                //System.out.println("codigo "+pokemones[i][j]+": nombre: "+pokemones[i][j]);
+                if(pokemones[j][i] != null)
+                    pokemon[j]=pokemones[j][i];
+            }
+            modelo.addRow(pokemon);
         }
+        return modelo;
     }
 
     @Override
@@ -55,4 +91,6 @@ public class PokemonesController implements DAOpokemones{
     public void EliminarPokemon(int codigo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
 }

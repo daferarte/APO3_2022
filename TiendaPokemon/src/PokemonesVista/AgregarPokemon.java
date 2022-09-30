@@ -7,6 +7,7 @@ package PokemonesVista;
 
 import DAOpokemones.DAOpokemones;
 import MenuPrincipal.MenuPrincipal;
+import javax.swing.JOptionPane;
 import pokemones.PokemonesController;
 
 /**
@@ -266,8 +267,10 @@ public class AgregarPokemon extends javax.swing.JFrame {
             varPok="No";
         }
         String estPok=spiEst.getValue().toString();
+        String[] pokemon={codPok,nomPok,tipPok,sexPok,varPok,estPok};
+        if(pokCont.GuardarPokemon(pokemon))
+            JOptionPane.showMessageDialog(this, "Guardado Exitoso");
         
-        pokCont.GuardarPokemon(codPok,nomPok,tipPok,sexPok,varPok,estPok);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
