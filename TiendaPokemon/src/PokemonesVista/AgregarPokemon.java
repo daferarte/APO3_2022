@@ -46,14 +46,14 @@ public class AgregarPokemon extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         TexFieNomPok = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
+        cH_Electrico = new javax.swing.JCheckBox();
+        cH_Fuego = new javax.swing.JCheckBox();
+        cH_Agua = new javax.swing.JCheckBox();
+        cH_Planta = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jCheckBox2 = new javax.swing.JCheckBox();
+        rD_Ma = new javax.swing.JRadioButton();
+        rD_He = new javax.swing.JRadioButton();
+        cH_Variocolor = new javax.swing.JCheckBox();
         jPanel4 = new javax.swing.JPanel();
         sliEst = new javax.swing.JSlider();
         spiEst = new javax.swing.JSpinner();
@@ -107,40 +107,40 @@ public class AgregarPokemon extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo"));
         jPanel2.setLayout(new java.awt.GridLayout(0, 2));
 
-        jCheckBox1.setText("Electrico");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        cH_Electrico.setText("Electrico");
+        cH_Electrico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                cH_ElectricoActionPerformed(evt);
             }
         });
-        jPanel2.add(jCheckBox1);
+        jPanel2.add(cH_Electrico);
 
-        jCheckBox3.setText("Fuego");
-        jPanel2.add(jCheckBox3);
+        cH_Fuego.setText("Fuego");
+        jPanel2.add(cH_Fuego);
 
-        jCheckBox4.setText("Agua");
-        jPanel2.add(jCheckBox4);
+        cH_Agua.setText("Agua");
+        jPanel2.add(cH_Agua);
 
-        jCheckBox5.setText("Planta");
-        jPanel2.add(jCheckBox5);
+        cH_Planta.setText("Planta");
+        jPanel2.add(cH_Planta);
 
         jPanel1.add(jPanel2);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Sexo"));
         jPanel3.setLayout(new java.awt.GridLayout(1, 0));
 
-        sexodepokemon.add(jRadioButton1);
-        jRadioButton1.setText("Macho");
-        jPanel3.add(jRadioButton1);
+        sexodepokemon.add(rD_Ma);
+        rD_Ma.setText("Macho");
+        jPanel3.add(rD_Ma);
 
-        sexodepokemon.add(jRadioButton2);
-        jRadioButton2.setText("Hembra");
-        jPanel3.add(jRadioButton2);
+        sexodepokemon.add(rD_He);
+        rD_He.setText("Hembra");
+        jPanel3.add(rD_He);
 
         jPanel1.add(jPanel3);
 
-        jCheckBox2.setText("Vario Color");
-        jPanel1.add(jCheckBox2);
+        cH_Variocolor.setText("Vario Color");
+        jPanel1.add(cH_Variocolor);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Estadisticas"));
         jPanel4.setLayout(new java.awt.GridLayout(1, 0));
@@ -201,9 +201,9 @@ public class AgregarPokemon extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void cH_ElectricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cH_ElectricoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_cH_ElectricoActionPerformed
 
     private void TexFieCodPokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TexFieCodPokMouseClicked
         // TODO add your handling code here:
@@ -242,7 +242,32 @@ public class AgregarPokemon extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         DAOpokemones pokCont = PokemonesController.getInstance();
-        pokCont.GuardarPokemon(TexFieNomPok.getText());
+        String codPok=TexFieCodPok.getText();
+        String nomPok=TexFieNomPok.getText();
+        String tipPok="";
+        if(cH_Agua.isSelected())
+            tipPok+="Agua ";
+        if(cH_Electrico.isSelected())
+            tipPok+="Electrico ";
+        if(cH_Fuego.isSelected())
+            tipPok+="Fuego ";
+        if(cH_Planta.isSelected())
+            tipPok+="Planta ";
+        String sexPok="";
+        if(rD_Ma.isSelected()){
+            sexPok="Macho";
+        }else{
+            sexPok="Hembra";
+        }
+        String varPok="";
+        if(cH_Variocolor.isSelected()){
+            varPok="Si";
+        }else{
+            varPok="No";
+        }
+        String estPok=spiEst.getValue().toString();
+        
+        pokCont.GuardarPokemon(codPok,nomPok,tipPok,sexPok,varPok,estPok);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -256,14 +281,14 @@ public class AgregarPokemon extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TexFieCodPok;
     private javax.swing.JTextField TexFieNomPok;
+    private javax.swing.JCheckBox cH_Agua;
+    private javax.swing.JCheckBox cH_Electrico;
+    private javax.swing.JCheckBox cH_Fuego;
+    private javax.swing.JCheckBox cH_Planta;
+    private javax.swing.JCheckBox cH_Variocolor;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -272,8 +297,8 @@ public class AgregarPokemon extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton rD_He;
+    private javax.swing.JRadioButton rD_Ma;
     private javax.swing.ButtonGroup sexodepokemon;
     private javax.swing.JSlider sliEst;
     private javax.swing.JSpinner spiEst;
