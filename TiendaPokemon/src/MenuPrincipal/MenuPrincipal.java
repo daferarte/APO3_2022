@@ -122,7 +122,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-        new MostrarPokemon().setVisible(true);
+        MostrarPokemon mosPokInterfaz = MostrarPokemon.getInstance();
+        mosPokInterfaz.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     
