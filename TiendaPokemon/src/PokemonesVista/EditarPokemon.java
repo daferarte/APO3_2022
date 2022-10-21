@@ -14,21 +14,20 @@ import pokemones.PokemonesController;
  *
  * @author dafer
  */
-public class AgregarPokemon extends javax.swing.JFrame {
+public class EditarPokemon extends javax.swing.JFrame {
 
-    private static AgregarPokemon agregarpokemon;
+    private static EditarPokemon editarPokemon;
     /**
-     * Creates new form AgregarPokemon
+     * Creates new form editarPokemon
      */
-    private AgregarPokemon() {
+    private EditarPokemon() {
         initComponents();
     }
     
-    public static AgregarPokemon getInstance(){
-        if(agregarpokemon == null)
-            agregarpokemon=new AgregarPokemon();
-        agregarpokemon.porDefecto();
-        return agregarpokemon;
+    public static EditarPokemon getInstance(){
+        if(editarPokemon == null)
+            editarPokemon=new EditarPokemon();        
+        return editarPokemon;
     }
 
     /**
@@ -67,7 +66,7 @@ public class AgregarPokemon extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Franklin Gothic Heavy", 0, 48)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Agregar Pokemon");
+        jLabel5.setText("Editar Pokemon");
         getContentPane().add(jLabel5, java.awt.BorderLayout.PAGE_START);
 
         jPanel1.setLayout(new java.awt.GridLayout(0, 1));
@@ -173,7 +172,7 @@ public class AgregarPokemon extends javax.swing.JFrame {
 
         jPanel7.setLayout(new java.awt.GridLayout(1, 0));
 
-        jButton1.setText("Guardar pokemon");
+        jButton1.setText("Actualizar pokemon");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -194,9 +193,9 @@ public class AgregarPokemon extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void porDefecto(){
-        TexFieCodPok.setText("Codigo");
-        TexFieNomPok.setText("Nombre");
+    public void datosPorActualizar(String[] pokemon){
+        TexFieCodPok.setText(pokemon[0]);
+        TexFieNomPok.setText(pokemon[1]);
         cH_Agua.setSelected(false);
         cH_Electrico.setSelected(false);
         cH_Fuego.setSelected(false);

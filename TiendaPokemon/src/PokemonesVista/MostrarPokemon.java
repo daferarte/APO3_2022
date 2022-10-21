@@ -6,7 +6,9 @@
 package PokemonesVista;
 
 import DAOpokemones.DAOpokemones;
+import MenuPrincipal.MenuPrincipal;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pokemones.PokemonesController;
 
@@ -17,6 +19,7 @@ import pokemones.PokemonesController;
 public class MostrarPokemon extends javax.swing.JFrame {
 
     private static MostrarPokemon instancia=null;
+    private DefaultTableModel modelo;
     /**
      * Creates new form MostrarPokemon
      */
@@ -26,7 +29,8 @@ public class MostrarPokemon extends javax.swing.JFrame {
     
     private void ActuListaPokemon(){
         DAOpokemones pokCont = PokemonesController.getInstance();
-        jTable2.setModel(pokCont.MostrarPokemones());
+        modelo=pokCont.MostrarPokemones();
+        jTable2.setModel(modelo);
     }
     
     public static MostrarPokemon getInstance(){
@@ -49,6 +53,7 @@ public class MostrarPokemon extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -62,6 +67,11 @@ public class MostrarPokemon extends javax.swing.JFrame {
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
         jButton1.setText("Regresar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1);
 
         jButton3.setText("Agregar pokemon");
@@ -71,6 +81,14 @@ public class MostrarPokemon extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton3);
+
+        jButton4.setText("Editar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton4);
 
         jButton2.setText("MostrarDatos");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -112,12 +130,50 @@ public class MostrarPokemon extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        MenuPrincipal menuprincipal = MenuPrincipal.getInstance();
+        menuprincipal.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        //JOptionPane.showMessageDialog(null,"["+jTable2.getSelectedRow()+","+jTable2.getSelectedColumn()+"]");
+        try{
+            if(jTable2.getSelectedRow()>=0){
+                String seleccionTxt=""+modelo.getValueAt(jTable2.getSelectedRow(),jTable2.getSelectedColumn());
+                if(!seleccionTxt.equals("null")){
+                    //Arreglo de pokemon
+                    String[] pokemon=new String[6];
+                    for(int i=0;i<6;i++){
+                        pokemon[i]=modelo.getValueAt(jTable2.getSelectedRow(),i).toString();
+                    }
+                    EditarPokemon editar = EditarPokemon.getInstance();
+                    editar.setVisible(true);
+                    editar.datosPorActualizar(pokemon);
+                }else{
+                    JOptionPane.showMessageDialog(null,"Debe seleccionar un campo no vacio", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                }
+            }else{
+                JOptionPane.showMessageDialog(null,"Debe seleccionar un elemento", "Advertencia", JOptionPane.ERROR_MESSAGE);
+            }
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e.toString());
+        }
+        
+        
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
