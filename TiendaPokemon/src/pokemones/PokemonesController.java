@@ -70,7 +70,7 @@ public class PokemonesController implements DAOpokemones{
         
         //agregando filas al modelo
         
-        for(int i=0;i<100;i++){
+        for(int i=0;i<cPokemon;i++){
             String[] pokemon=new String[6];
             for(int j=0;j<6;j++){
                 //System.out.println("codigo "+pokemones[i][j]+": nombre: "+pokemones[i][j]);
@@ -83,8 +83,20 @@ public class PokemonesController implements DAOpokemones{
     }
 
     @Override
-    public void ActualizarPokemon(int codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean ActualizarPokemon(String[] pokemon) {
+        int fila=0;
+        for(int i=0;i<cPokemon;i++){
+            if(pokemones[0][i]==pokemon[0]){
+                fila=i;
+                break;
+            }
+        }
+        pokemones[1][fila]=pokemon[1];
+        pokemones[2][fila]=pokemon[2];
+        pokemones[3][fila]=pokemon[3];
+        pokemones[4][fila]=pokemon[4];
+        pokemones[5][fila]=pokemon[5];
+        return true;
     }
 
     @Override

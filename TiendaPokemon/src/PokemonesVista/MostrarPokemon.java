@@ -151,7 +151,9 @@ public class MostrarPokemon extends javax.swing.JFrame {
                     }
                     EditarPokemon editar = EditarPokemon.getInstance();
                     editar.setVisible(true);
+                    editar.porDefecto();
                     editar.datosPorActualizar(pokemon);
+                    this.dispose();
                 }else{
                     JOptionPane.showMessageDialog(null,"Debe seleccionar un campo no vacio", "Advertencia", JOptionPane.WARNING_MESSAGE);
                 }

@@ -75,13 +75,9 @@ public class EditarPokemon extends javax.swing.JFrame {
         jPanel6.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         jPanel6.setLayout(new java.awt.GridLayout(1, 0));
 
+        TexFieCodPok.setEditable(false);
         TexFieCodPok.setText("Codigo");
         TexFieCodPok.setToolTipText("");
-        TexFieCodPok.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TexFieCodPokMouseClicked(evt);
-            }
-        });
         TexFieCodPok.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 TexFieCodPokKeyTyped(evt);
@@ -193,9 +189,9 @@ public class EditarPokemon extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void datosPorActualizar(String[] pokemon){
-        TexFieCodPok.setText(pokemon[0]);
-        TexFieNomPok.setText(pokemon[1]);
+    public void porDefecto(){
+        TexFieCodPok.setText("Codigo");
+        TexFieNomPok.setText("Nombre");
         cH_Agua.setSelected(false);
         cH_Electrico.setSelected(false);
         cH_Fuego.setSelected(false);
@@ -206,14 +202,38 @@ public class EditarPokemon extends javax.swing.JFrame {
         cH_Variocolor.setSelected(false); 
         spiEst.setValue(0);
     }
+    
+    public void datosPorActualizar(String[] pokemon){
+        TexFieCodPok.setText(pokemon[0]);
+        TexFieNomPok.setText(pokemon[1]);
+        String[] tipos=pokemon[2].split(" ");
+        for(int i=0;i<tipos.length;i++){
+            switch(tipos[i]){
+                case "Agua": cH_Agua.setSelected(true); break;
+                case "Electrico": cH_Electrico.setSelected(true); break;
+                case "Fuego": cH_Fuego.setSelected(true); break;
+                case "Planta": cH_Planta.setSelected(true); break;
+            }
+        }
+        sexodepokemon.clearSelection();
+        if(pokemon[3].equals("Macho")){
+            rD_Ma.setSelected(true);
+        }else{
+            rD_He.setSelected(true);
+        }
+        if(pokemon[4].equals("Si")){
+            cH_Variocolor.setSelected(true); 
+        }else{
+            cH_Variocolor.setSelected(false);
+        }
+        spiEst.setValue(Integer.parseInt(pokemon[5]));
+        
+        
+        
+    }
     private void cH_ElectricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cH_ElectricoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cH_ElectricoActionPerformed
-
-    private void TexFieCodPokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TexFieCodPokMouseClicked
-        // TODO add your handling code here:
-        TexFieCodPok.setText("");
-    }//GEN-LAST:event_TexFieCodPokMouseClicked
 
     private void TexFieNomPokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TexFieNomPokMouseClicked
         // TODO add your handling code here:
@@ -272,8 +292,8 @@ public class EditarPokemon extends javax.swing.JFrame {
         }
         String estPok=spiEst.getValue().toString();
         String[] pokemon={codPok,nomPok,tipPok,sexPok,varPok,estPok};
-        if(pokCont.GuardarPokemon(pokemon))
-            JOptionPane.showMessageDialog(this, "Guardado Exitoso");
+        if(pokCont.ActualizarPokemon(pokemon))
+            JOptionPane.showMessageDialog(this, "ACtualización Exitosa");
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

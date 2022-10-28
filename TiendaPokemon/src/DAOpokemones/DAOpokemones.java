@@ -15,6 +15,6 @@ public interface DAOpokemones {
     public boolean GuardarPokemon(String cpokemon,String npokemon, String tpokemon, String spokemon, String vpokemon, String epokemon);
     public boolean GuardarPokemon(String[] pokemon);
     public DefaultTableModel MostrarPokemones();
-    public void ActualizarPokemon(int codigo);
+    public boolean ActualizarPokemon(String[] pokemon);
     public void EliminarPokemon(int codigo);
 }
