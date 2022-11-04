@@ -17,4 +17,5 @@ public interface DAOpokemones {
     public DefaultTableModel MostrarPokemones();
     public boolean ActualizarPokemon(String[] pokemon);
     public void EliminarPokemon(int codigo);
+    public boolean GuardarArchivo();
 }

@@ -6,6 +6,10 @@
 package pokemones;
 
 import DAOpokemones.DAOpokemones;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -102,6 +106,35 @@ public class PokemonesController implements DAOpokemones{
     @Override
     public void EliminarPokemon(int codigo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean GuardarArchivo() {
+        FileWriter fw;
+        String datos="";
+        boolean gDatos=false;
+        
+        for(int i=0;i<cPokemon;i++){
+            
+            for(int j=0;j<6;j++){
+                //System.out.println("codigo "+pokemones[i][j]+": nombre: "+pokemones[i][j]);
+                if(pokemones[j][i] != null)
+                    datos+=pokemones[j][i]+"-";
+            }
+            datos+="\n";
+        }
+        
+        try{
+            fw=new FileWriter("pokemones.txt");
+            fw.write(datos);
+            fw.close();
+            gDatos=true;
+        } catch (IOException ex) {
+            Logger.getLogger(PokemonesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return gDatos;
+        
     }
 
     
