@@ -5,11 +5,13 @@
  */
 package PokemonesVista;
 
+import DAOpokemones.DAOBatallas;
 import DAOpokemones.DAOpokemones;
 import MenuPrincipal.MenuPrincipal;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import pokemones.BatallaController;
 import pokemones.PokemonesController;
 
 /**
@@ -55,6 +57,7 @@ public class MostrarPokemon extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
 
@@ -97,6 +100,14 @@ public class MostrarPokemon extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2);
+
+        jButton5.setText("Batalla");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton5);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_END);
 
@@ -169,6 +180,38 @@ public class MostrarPokemon extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        try{
+            if(jTable2.getSelectedRow()>=0){
+                String seleccionTxt=""+modelo.getValueAt(jTable2.getSelectedRow(),jTable2.getSelectedColumn());
+                if(!seleccionTxt.equals("null")){
+                    //Arreglo de pokemon
+                    int[] filas=jTable2.getSelectedRows();
+                    String[][] pokemon=new String[6][filas.length];                    
+                    for(int i=0; i<filas.length;i++){
+                        pokemon[0][i]=modelo.getValueAt(filas[i],0).toString();
+                        pokemon[1][i]=modelo.getValueAt(filas[i],1).toString();
+                        pokemon[2][i]=modelo.getValueAt(filas[i],2).toString();
+                        pokemon[3][i]=modelo.getValueAt(filas[i],3).toString();
+                        pokemon[4][i]=modelo.getValueAt(filas[i],4).toString();
+                        pokemon[5][i]=modelo.getValueAt(filas[i],5).toString();
+                    }
+                    DAOBatallas pokBat = BatallaController.getInstancia();
+                    JOptionPane.showMessageDialog(null, "Ganador "+pokemon[1][pokBat.Batalla(pokemon)]);
+                    
+                }else{
+                    JOptionPane.showMessageDialog(null,"Debe seleccionar un campo no vacio", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                }
+            }else{
+                JOptionPane.showMessageDialog(null,"Debe seleccionar un elemento", "Advertencia", JOptionPane.ERROR_MESSAGE);
+            }
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e.toString());
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -176,6 +219,7 @@ public class MostrarPokemon extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
